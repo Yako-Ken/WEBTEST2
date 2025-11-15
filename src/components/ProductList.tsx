@@ -19,8 +19,8 @@ function ProductList() {
       </Link>
        <Link href="/test" className='w-full flex flex-col gap-4 sm:w-[45%] lg:w-[22%]'>
       <div className="relative w-full h-80">
-        <Image src="https://images.pexels.com/photos/32614530/pexels-photo-32614532.jpeg" alt="" fill sizes='25vw' className='absolute object-cover rounded-md z-10 hover:opacity-0 transition-opacity easy duration-500' />
-        <Image src="https://images.pexels.com/photos/34627919/pexels-photo-34627921.jpeg" alt="" fill sizes='25vw' className='absolute object-cover rounded-md' />
+        <Image src="https://images.pexels.com/photos/32614532/pexels-photo-32614532.jpeg" alt="" fill sizes='25vw' className='absolute object-cover rounded-md z-10 hover:opacity-0 transition-opacity easy duration-500' />
+        <Image src="https://images.pexels.com/photos/34627921/pexels-photo-34627921.jpeg" alt="" fill sizes='25vw' className='absolute object-cover rounded-md' />
       </div>
       <div className="flex justify-between">
         <span className='font-medium'>Product Name</span>
@@ -31,8 +31,8 @@ function ProductList() {
       </Link>
        <Link href="/test" className='w-full flex flex-col gap-4 sm:w-[45%] lg:w-[22%]'>
       <div className="relative w-full h-80">
-        <Image src="https://images.pexels.com/photos/32614530/pexels-photo-32614534.jpeg" alt="" fill sizes='25vw' className='absolute object-cover rounded-md z-10 hover:opacity-0 transition-opacity easy duration-500' />
-        <Image src="https://images.pexels.com/photos/34627919/pexels-photo-34627923.jpeg" alt="" fill sizes='25vw' className='absolute object-cover rounded-md' />
+        <Image src="https://images.pexels.com/photos/32614534/pexels-photo-32614534.jpeg" alt="" fill sizes='25vw' className='absolute object-cover rounded-md z-10 hover:opacity-0 transition-opacity easy duration-500' />
+        <Image src="https://images.pexels.com/photos/34627923/pexels-photo-34627923.jpeg" alt="" fill sizes='25vw' className='absolute object-cover rounded-md' />
       </div>
       <div className="flex justify-between">
         <span className='font-medium'>Product Name</span>
@@ -43,8 +43,8 @@ function ProductList() {
       </Link>
        <Link href="/test" className='w-full flex flex-col gap-4 sm:w-[45%] lg:w-[22%]'>
       <div className="relative w-full h-80">
-        <Image src="https://images.pexels.com/photos/32614530/pexels-photo-32614536.jpeg" alt="" fill sizes='25vw' className='absolute object-cover rounded-md z-10 hover:opacity-0 transition-opacity easy duration-500' />
-        <Image src="https://images.pexels.com/photos/34627919/pexels-photo-34627925.jpeg" alt="" fill sizes='25vw' className='absolute object-cover rounded-md' />
+        <Image src="https://images.pexels.com/photos/32614536/pexels-photo-32614536.jpeg" alt="" fill sizes='25vw' className='absolute object-cover rounded-md z-10 hover:opacity-0 transition-opacity easy duration-500' />
+        <Image src="https://images.pexels.com/photos/34627925/pexels-photo-34627925.jpeg" alt="" fill sizes='25vw' className='absolute object-cover rounded-md' />
       </div>
       <div className="flex justify-between">
         <span className='font-medium'>Product Name</span>
