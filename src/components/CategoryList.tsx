@@ -86,23 +86,35 @@ function CategoryList() {
         </div>
       )}
 
-      {/* Mobile Autoplay */}
-      {isMobile && (
-        <div className="relative w-full px-4">
+      {/* Mobile Slider with animation like main Slider */}
+{isMobile && (
+  <div className="relative w-full overflow-hidden h-96">
+    <div
+      className="flex transition-all ease-in-out duration-1000"
+      style={{ transform: `translateX(-${currentIndex * 100}%)` }}
+    >
+      {slides.map((slide, i) => (
+        <div key={i} className="min-w-full px-4">
           <Link href="/list?cat=test" className="block w-full">
-            <div className="relative bg-slate-100 w-full h-96">
+            <div className="relative bg-slate-100 w-full h-96 rounded-xl overflow-hidden">
               <Image
-                src={slides[currentIndex].src}
+                src={slide.src}
                 alt=""
                 fill
                 sizes="100vw"
                 className="object-cover"
               />
             </div>
-            <h1 className="mt-4 font-light text-xl tracking-wide">{slides[currentIndex].title}</h1>
+            <h1 className="mt-4 font-light text-xl tracking-wide">
+              {slide.title}
+            </h1>
           </Link>
         </div>
-      )}
+      ))}
+    </div>
+  </div>
+)}
+
     </div>
   );
 }
