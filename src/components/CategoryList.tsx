@@ -62,7 +62,7 @@ function CategoryList() {
 
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    }, 3500);
 
     return () => clearInterval(interval);
   }, [isMobile]);
