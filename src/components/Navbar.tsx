@@ -12,7 +12,10 @@ function Navbar() {
       <Link href='/'>
       <div className='text-2xl tracking-wide'>LOGO</div>
       </Link>
+      <div className='flex items-center gap-8'>
+      <NavBarIcons/>
       <Menu/>
+      </div>
         </div>
         {/* BIG SCREEN */}
         <div className='hidden md:flex items-center justify-between gap-8 h-full'>

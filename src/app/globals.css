@@ -9,3 +9,25 @@
 .scrollbar-hide{
     scrollbar-width:none;
 }
+/* Fix for transparent dropdown menus */
+.dropdown-menu {
+  background-color: white !important;
+}
+
+/* Fix for transparent form inputs */
+.form-control, .form-select {
+  background-color: white !important;
+}
+
+/* A more general fix if the above doesn't work */
+input, select, textarea, .dropdown-menu {
+    background-color: white !important;
+}
+
+.bg-popover{
+    background:white;
+}
+
+.bg-sidebar{
+    background:white;
+}
