@@ -42,7 +42,7 @@ const data = {
       items: [
         {
           title: "orders",
-          url: "/dashboard/orders",
+          url: "/dashboard/",
         },
         {
           title: "categories",
