@@ -1,4 +1,5 @@
 // components/orders/columns.ts
+"use client";
 import { IOrder, IProduct } from "@/types";
 import { ColumnDef } from "@tanstack/react-table";
 

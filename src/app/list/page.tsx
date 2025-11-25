@@ -55,7 +55,7 @@ const ListPage = async ({ searchParams }: ListPageProps) => {
 
       {/* --- PRODUCT LIST (مع تمرير البيانات) --- */}
       <h1 className="text-xl font-semibold mt-10">Shoes For You!</h1>
-      <ProductList products={productsResponse?.data?.docs || []} />
+      <ProductList/>
     </div>
   );
 };

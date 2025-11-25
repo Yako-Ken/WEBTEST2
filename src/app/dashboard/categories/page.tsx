@@ -1,27 +1,27 @@
-// src/app/dashboard/categories/page.tsx
 import React from "react";
 import { fetchData } from "@/app/actions/Server";
 import MaxWidthWrapper from "@/components/defaults/MaxWidthWrapper";
 import { Button } from "@/app/components/ui/button";
 import ModalCustom from "@/components/defaults/ModalCustom";
 import CategoryCreateForm from "./CategoryCreateForm";
-import CategoryTableClientWrapper from "./CategoryTableClientWrapper"; // 1. استيراد الغلاف الجديد
+import CategoryTableClientWrapper from "./CategoryTableClientWrapper";
+
+export const dynamic = 'force-dynamic';
 
 const CategoriesPage = async () => {
-  let categories = []; // 2. ابدأ بمصفوفة فارغة آمنة
+  let categories = [];
 
   try {
     const categoriesData = await fetchData({
       resourceName: "categories",
       tags: ["categories"],
     });
-    // 3. تحقق من وجود البيانات قبل استخدامها
+    
     if (categoriesData && categoriesData.data && categoriesData.data.docs) {
       categories = categoriesData.data.docs;
     }
   } catch (error) {
     console.error("Failed to fetch categories:", error);
-    // ستبقى categories مصفوفة فارغة في حالة حدوث خطأ
   }
 
   return (
@@ -37,7 +37,6 @@ const CategoriesPage = async () => {
           />
         </div>
         
-        {/* 4. استخدم مكون الغلاف الجديد ومرر له البيانات الآمنة */}
         <CategoryTableClientWrapper categories={categories} />
 
       </div>

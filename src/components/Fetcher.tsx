@@ -3,7 +3,7 @@ import React from "react";
 import { fetchData } from "../app/actions/Server";
 
 interface FetcherProps {
-  resourceName: "products" | "categories" | "variants"; // Add other resource names as needed
+  resourceName: "products" | "categories" | "variants"|"orders"; // Add other resource names as needed
   children: (data: any) => React.ReactNode; // Function to render content
   queryParams?: URLSearchParams;
   cache?: RequestCache;

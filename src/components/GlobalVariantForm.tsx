@@ -10,18 +10,21 @@ import toast from "react-hot-toast";
 import { fetchData } from "@/app/actions/Server";
 import { revalidateTags } from "@/app/actions/Revalidate";
 import { OptionsArrayField } from "./OptionsArrayField"; // سنقوم بفصل هذا المكون
+import { IFormField } from "@/types";
 const variantSchema = z.object({
   name: z.string().min(1, "Name is required"),
   options: z.array(z.string().min(1, "Option value cannot be empty")).min(1, "At least one option is required"),
 });
 
-const formConfig = [
-  {
-    name: "name",
-    label: "Variant Name (e.g., Color, Size)",
-    component: "input",
-    type: "text",
-  },
+const field = (name: string, label: string, component: IFormField["component"]): IFormField => ({
+  name,
+  label,
+  component,
+});
+
+const formConfig: IFormField[] = [
+  field("name", "Variant Name", "input"),
+  field("options", "Options", "array"),
 ];
 
 const GlobalVariantForm = ({ defaultValues: initialData }: { defaultValues?: any }) => {
@@ -65,7 +68,7 @@ const GlobalVariantForm = ({ defaultValues: initialData }: { defaultValues?: any
       className="w-full flex flex-col gap-5"
     >
       {/* 3. تمرير OptionsArrayField كـ children */}
-      {(control, getValues) => <OptionsArrayField control={control} getValues={getValues} />}
+      {() => <OptionsArrayField />}
     </DynamicForm>
   );
 };

@@ -70,6 +70,8 @@ export default function SinglePage() {
         <Add
           productId={product._id}
           productName={product.name}
+          productPrice={product.basePrice} 
+          productImage={product.images?.[0]?.secure_url}
           variants={product.variants || []}
         />
         

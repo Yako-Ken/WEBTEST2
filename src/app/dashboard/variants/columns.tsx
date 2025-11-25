@@ -13,18 +13,22 @@ export const variantColumns: ColumnDef<IVariant>[] = [
   {
     accessorKey: "options",
     header: "options",
-    cell: ({ row }) => (
-      <ModalCustom
-        content={
-          <ul className=" flex flex-col list-disc">
-            {row.original.options.map((option) => (
-              <li>{option}</li>
-            ))}
-          </ul>
-        }
-        btn={<Button>Open</Button>}
-      />
-    ),
+   cell: ({ row }) => (
+  <ModalCustom
+    content={
+      <ul className="flex flex-col list-disc">
+        {row.original.options.map((option, idx) => (
+          <li key={idx}>
+            <li>
+  {option.name}: {option.values.join(", ")}
+</li>
+          </li>
+        ))}
+      </ul>
+    }
+    btn={<Button>Open</Button>}
+  />
+),
   },
   {
     accessorKey: "actions",

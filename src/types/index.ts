@@ -3,6 +3,7 @@ import { ZodTypeAny } from "zod";
 export interface Category {
   _id: string;
   name: string;
+  slug: string;
   image?: {
     secure_url: string;
     public_id: string;
@@ -65,6 +66,7 @@ export interface IOrder {
   total: number;
   trackingNumber?: string;
   notes?: string;
+  createdAt: string;
 }
 
 export interface IProduct {
@@ -75,7 +77,8 @@ export interface IProduct {
   category: string;
   gender: "male" | "female" | "kids";
   variants: IVariant[];
-  basePrice: number;
+  price: number;
+
   brand?: string;
   isActive: boolean;
   createdAt: Date;

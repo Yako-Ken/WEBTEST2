@@ -13,6 +13,10 @@ export interface CartItem {
 interface CartState {
   items: CartItem[];
   totalItems: number;
+
+  subtotal: number;
+  delivery: number;
+  salesTax: number;
   totalPrice: number;
   addItem: (item: CartItem) => void;
   removeItem: (productId: string, variantId?: string) => void;
@@ -21,22 +25,35 @@ interface CartState {
 }
 
 const calculateTotals = (items: CartItem[]) => {
-  return items.reduce(
-    (acc, item) => {
-      acc.totalItems += item.quantity;
-      acc.totalPrice += item.price * item.quantity;
-      return acc;
-    },
-    { totalItems: 0, totalPrice: 0 }
+  const subtotal = items.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
   );
+
+  const delivery = subtotal > 0 ? 50 : 0; // مثال ثابت
+  const salesTax = subtotal * 0.1; // 10% مثال
+  const totalPrice = subtotal + delivery + salesTax;
+
+  return {
+    totalItems: items.reduce((acc, item) => acc + item.quantity, 0),
+    subtotal,
+    delivery,
+    salesTax,
+    totalPrice,
+  };
 };
+
 
 export const useCartStore = create<CartState>()(
   persist(
     (set, get) => ({
       items: [],
-      totalItems: 0,
-      totalPrice: 0,
+totalItems: 0,
+subtotal: 0,
+delivery: 0,
+salesTax: 0,
+totalPrice: 0,
+
 
       addItem: (itemToAdd) => {
         const { items } = get();

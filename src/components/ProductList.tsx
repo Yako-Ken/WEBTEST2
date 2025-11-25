@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { fetchData } from "@/app/actions/Server";
+import { IProduct } from "@/types";
 
 const truncateText = (text: string, maxLength: number): string => {
   if (text.length <= maxLength) {
@@ -15,7 +16,7 @@ const ProductList = async () => {
     tags: ["products"],
   });
 
-  const products: Product[] = productsResponse?.data?.docs || [];
+  const products: IProduct[] = productsResponse?.data?.docs || [];
 
   return (
     <div className="mt-12 mb-12 flex gap-x-8 gap-y-16 justify-start flex-wrap">

@@ -38,6 +38,7 @@ const variantSchema = z.object({
 });
 
 type VariantFormValues = z.infer<typeof variantSchema>;
+type VariantFormInput = z.input<typeof variantSchema>;
 
 const initialValues: VariantFormValues = {
   options: [{ name: "", value: "" }],
@@ -58,10 +59,12 @@ export default function ProductVariantPage({
   productId,
   defaultValues,
   isNew = false,
+   variants,
 }: {
   productId: string;
   defaultValues?: any;
   isNew?: boolean;
+  variants?: any[];
 }) {
   const router = useRouter();
   const [isEditing, setIsEditing] = useState(isNew);
@@ -98,7 +101,7 @@ export default function ProductVariantPage({
     return <div className="p-4 border rounded-lg mb-4">Loading product context...</div>;
   }
 
-  const form = useForm<VariantFormValues>({
+  const form = useForm<VariantFormInput>({
     resolver: zodResolver(variantSchema),
     defaultValues: defaultValues ? {
       ...defaultValues,
@@ -197,6 +200,7 @@ export default function ProductVariantPage({
                 const valueOptions = selectedOptionType && availableOptions[selectedOptionType]
                   ? availableOptions[selectedOptionType].map(val => ({ label: val, value: val }))
                   : [];
+                  
 
                 return (
                   <div key={field.id} className="flex flex-col gap-4 mb-4 p-3 border rounded-md">
@@ -207,7 +211,6 @@ export default function ProductVariantPage({
                         label="Option Type"
                         placeholder="Select type..."
                         options={optionTypes}
-                        disabled={isLoadingOptions}
                       />
                       <FormSelect
                         name={`options.${index}.value`}
@@ -215,7 +218,6 @@ export default function ProductVariantPage({
                         label="Option Value"
                         placeholder="Select value..."
                         options={valueOptions}
-                        disabled={!selectedOptionType}
                       />
                     </div>
                     {fields.length > 1 && (

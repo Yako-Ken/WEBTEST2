@@ -45,10 +45,12 @@ export default function SinglePageClient({ product }: { product: any }) {
         <div className="h-[2px] bg-gray-100" />
         
         <Add
-          product={product}
-          selectedVariant={selectedVariant}
-          onVariantSelect={setSelectedVariant}
-        />
+  productId={product._id}
+  productName={product.name}
+  productPrice={product.basePrice}
+  productImage={product.images?.[0]?.secure_url || "/placeholder.png"}
+  variants={product.variants || []}
+/>
         
         <div className="h-[2px] bg-gray-100" />
         <div className="text-sm">

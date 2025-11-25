@@ -2,21 +2,24 @@
 import { ChevronLeftIcon, ChevronRightIcon, DoubleArrowLeftIcon, DoubleArrowRightIcon } from "@radix-ui/react-icons";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/app/components/ui/button";
+import { Table } from "@tanstack/react-table"; // 👈 استيراد Table
 
-interface DataTablePaginationProps {
-  page: number;
-  totalPages: number;
+interface DataTablePaginationProps<TData> {
+  table: Table<TData>; // 👈 إضافة table
 }
 
-export function DataTablePagination({ page, totalPages }: DataTablePaginationProps) {
+export function DataTablePagination<TData>({ table }: DataTablePaginationProps<TData>) {
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  // استخراج الصفحة الحالية والإجمالي من الـ table
+  const page = table.getState().pagination.pageIndex + 1;
+  const totalPages = table.getPageCount();
 
   const goToPage = (newPage: number) => {
     const params = new URLSearchParams(searchParams);
     params.set("page", newPage.toString());
-
-    router.replace(`?${params.toString()}`, { scroll: false }); // Prevent scrolling to top
+    router.replace(`?${params.toString()}`, { scroll: false });
   };
 
   return (
@@ -35,7 +38,12 @@ export function DataTablePagination({ page, totalPages }: DataTablePaginationPro
             <span className="sr-only">Go to first page</span>
             <DoubleArrowLeftIcon className="h-4 w-4" />
           </Button>
-          <Button variant="outline" className="h-8 w-8 p-0" onClick={() => goToPage(page - 1)} disabled={page === 1}>
+          <Button
+            variant="outline"
+            className="h-8 w-8 p-0"
+            onClick={() => goToPage(page - 1)}
+            disabled={page === 1}
+          >
             <span className="sr-only">Go to previous page</span>
             <ChevronLeftIcon className="h-4 w-4" />
           </Button>

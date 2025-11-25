@@ -51,9 +51,10 @@ const Add = ({
       return;
     }
 
-    const cartItemName = hasVariants && selectedVariant?.color 
-      ? `${productName} (${selectedVariant.color})` 
-      : productName;
+    const cartItemName =
+      hasVariants && selectedVariant?.color
+        ? `${productName} (${selectedVariant.color})`
+        : productName;
 
     const itemToAdd = {
       productId: productId,
@@ -68,8 +69,6 @@ const Add = ({
     toast.success(`${quantity} x "${productName}" added to cart!`);
   };
 
-  console.log(variants)
-
   return (
     <div className="flex flex-col gap-4">
       {hasVariants && (
@@ -78,7 +77,7 @@ const Add = ({
           <ul className="flex items-center gap-3">
             {variants.map((variant) => (
               <li
-                key={variant._id}
+                key={variant._id} // المفتاح موجود هنا وهو صحيح
                 className="w-8 h-8 rounded-full ring-1 ring-gray-300 cursor-pointer relative flex items-center justify-center"
                 style={{ backgroundColor: variant.color || "#FFFFFF" }}
                 onClick={() => {
@@ -105,7 +104,11 @@ const Add = ({
           >
             -
           </button>
-          {quantity}
+
+          <span className="min-w-[2rem] text-center">
+            {quantity}
+          </span>
+
           <button
             className="cursor-pointer text-xl disabled:cursor-not-allowed disabled:opacity-50"
             onClick={() => handleQuantity("i")}
@@ -114,12 +117,15 @@ const Add = ({
             +
           </button>
         </div>
+
         {hasVariants && stock > 0 && (
           <div className="text-sm">
             {stock <= 10 ? `Only ${stock} items left!` : `${stock} available`}
           </div>
         )}
-        {hasVariants && stock === 0 && <div className="text-sm text-red-500">Out of stock</div>}
+        {hasVariants && stock === 0 && (
+          <div className="text-sm text-red-500">Out of stock</div>
+        )}
       </div>
 
       <button

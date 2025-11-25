@@ -23,6 +23,7 @@ const productSchema = z.object({
 
 // 4. استنباط نوع البيانات من المخطط
 type ProductFormValues = z.infer<typeof productSchema>;
+type ProductFormInput = z.input<typeof productSchema>;
 
 export default function ProductCreatePage({
   categories,
@@ -34,7 +35,7 @@ export default function ProductCreatePage({
   const router = useRouter();
 
   // 5. إنشاء كائن form باستخدام useForm
-  const form = useForm<ProductFormValues>({
+  const form = useForm<ProductFormInput>({
     resolver: zodResolver(productSchema),
     // دمج القيم الافتراضية إذا كانت موجودة
     defaultValues: defaultValues || {

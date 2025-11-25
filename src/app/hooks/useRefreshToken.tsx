@@ -1,4 +1,4 @@
-import axios from "../api/axios"; // Use a public axios instance without interceptors
+import axios from "../api/axios";
 import { useAuth } from "../context/AuthProvider";
 
 const useRefreshToken = () => {
@@ -6,37 +6,29 @@ const useRefreshToken = () => {
 
   const refresh = async () => {
     try {
-      setAuth((prev) => ({ ...prev, loading: true }));
       const res = await axios.get("/auth/refresh", {
-        withCredentials: true, // Send refresh token cookie
+        withCredentials: true,
       });
 
-      console.log("Refresh response:", res.data);
-
-      // Ensure correct token key
       const newAccessToken = res.data.accessToken || res.data.token;
 
       if (!newAccessToken) {
         console.warn("No access token returned from refresh. Logging out...");
-        setAuth({ accessToken: null, user: null, loading: false }); // Clear auth state
-        return null; // Indicate no token
+        setAuth({ accessToken: undefined, user: null });
+        return null;
       }
 
-      setAuth((prev) => ({
-        ...prev,
+      setAuth({
         accessToken: newAccessToken,
-        user: res.data.data?.user ?? prev.user, // Ensure user data is updated
-        loading: false,
-      }));
+        user: res.data.data?.user ?? null,
+      });
 
       return newAccessToken;
     } catch (error) {
-      console.warn("Error refreshing token:", error.response?.data || error.message);
-
-      // If refresh token is invalid, log out the user
-      setAuth({ accessToken: null, user: null, loading: false });
-
-      return null; // Indicate refresh failure without throwing
+      const message = error instanceof Error ? error.message : String(error);
+      console.warn("Error refreshing token:", message);
+      setAuth({ accessToken: undefined, user: null });
+      return null;
     }
   };
 
