@@ -1,4 +1,5 @@
 // app/products/page.tsx
+export const dynamic = 'force-dynamic';
 import { IOrder } from "@/types";
 import { DataTable } from "../../../components/DataTable";
 import Fetcher from "../../../components/Fetcher";
