@@ -12,23 +12,36 @@ export const variantColumns: ColumnDef<IVariant>[] = [
   },
   {
     accessorKey: "options",
-    header: "options",
-   cell: ({ row }) => (
-  <ModalCustom
-    content={
-      <ul className="flex flex-col list-disc">
-        {row.original.options.map((option, idx) => (
-          <li key={idx}>
-            <li>
-  {option.name}: {option.values.join(", ")}
-</li>
-          </li>
-        ))}
-      </ul>
-    }
-    btn={<Button>Open</Button>}
-  />
-),
+    header: "Options",
+    cell: ({ row }) => {
+      // التحقق من وجود مصفوفة options
+      const options = row.original.options;
+      if (!options || !Array.isArray(options) || options.length === 0) {
+        return <span>No options</span>; // عرض نص بديل آمن
+      }
+
+      return (
+        <ModalCustom
+          content={
+            <ul className="flex flex-col list-disc pl-5">
+              {options.map((option, idx) => {
+                // التحقق من وجود مصفوفة values لكل option
+                const values = option.values;
+                const displayValues =
+                  values && Array.isArray(values) ? values.join(", ") : "N/A";
+
+                return (
+                  <li key={idx}>
+                    {option.name}: {displayValues}
+                  </li>
+                );
+              })}
+            </ul>
+          }
+          btn={<Button>Open</Button>}
+        />
+      );
+    },
   },
   {
     accessorKey: "actions",
@@ -36,7 +49,7 @@ export const variantColumns: ColumnDef<IVariant>[] = [
     cell: ({ row }) => (
       <ModalCustom
         btn={
-          <div className=" w-fit flex flex-col">
+          <div className="w-fit flex flex-col">
             <Button variant={"ghost"}>Update</Button>
           </div>
         }
